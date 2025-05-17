@@ -7,6 +7,7 @@ export const LIGHT_THEME: IThemeColors = {
   absolute100blur: "rgba(241, 241, 241, .5)",
   orange: "#FF4C0D",
   text: "#151515",
+  logo: "#FF4C0D",
 };
 
 export const DARK_THEME: IThemeColors = {
@@ -16,4 +17,5 @@ export const DARK_THEME: IThemeColors = {
   absolute100blur: "rgba(241, 241, 241, .5)",
   orange: "#FF4C0D",
   text: "#F1F1F1",
+  logo: "#F1F1F1",
 };

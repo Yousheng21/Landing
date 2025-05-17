@@ -5,4 +5,5 @@ export interface IThemeColors {
   absolute100blur: string;
   orange: string;
   text: string;
+  logo: string;
 }
