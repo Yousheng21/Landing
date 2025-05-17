@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled, { useTheme } from "styled-components";
 
 import { ReactComponent as Logo } from "../assets/logo.svg";
 
-import { Button } from "./Button";
+import { Modal } from "./modal/Modal";
 
 const links: Array<Record<"title" | "path", string>> = [
   { title: "О продукте", path: "#about" },
@@ -15,6 +16,11 @@ const links: Array<Record<"title" | "path", string>> = [
 
 export const NavBar = () => {
   const theme = useTheme();
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const close = () => setModalOpen(false);
+  const open = () => setModalOpen(true);
 
   return (
     <Container>
@@ -30,9 +36,18 @@ export const NavBar = () => {
           ))}
         </ListLinks>
       </div>
-      <div className="hidden justify-end sm:flex">
-        <Button title="Купить" />
-      </div>
+      <BtnBuy
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="sm:flex hidden justify-self-end"
+        onClick={() => (modalOpen ? close() : open())}
+      >
+        Купить
+      </BtnBuy>
+
+      <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+        {modalOpen && <Modal handleClose={close} />}
+      </AnimatePresence>
     </Container>
   );
 };
@@ -54,4 +69,10 @@ const ListLinks = styled.div`
   display: flex;
   gap: 100px;
   font-size: 14px;
+`;
+
+const BtnBuy = styled(motion.button)`
+  background-color: ${(props) => props.theme.absolute100};
+  padding: 15px 35px;
+  border-radius: 65px;
 `;

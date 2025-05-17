@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled, { useTheme } from "styled-components";
 
+import { tabs } from "./constants";
+
 export const Tabs = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
@@ -94,25 +96,3 @@ const TextInfo = styled.span`
   color: ${(props) => props.theme.text};
   font-size: 20px;
 `;
-
-/**
- * ==============   Data   ================
- */
-
-const tabs = [
-  {
-    title: "Три режима скорости",
-    info: "Три режима езды позволяют почуствовать себя комфортно в любой ситуации. Режим «S» увеличитвает скорость, если опаздываете на работу. Во время прогулки по парку активируйте режим «D». Включите режим «Пешеход», когда двигаетесь по оживлённой улице.",
-    images: ["assets/1.png"],
-  },
-  {
-    title: "Система восстановления энергии",
-    info: "Во время торможения и движения по инерции система преобразовывает кинетическую энергию в электрическую, позволяя увеличить общий запас хода самоката.",
-    images: ["assets/2.png"],
-  },
-  {
-    title: "Мощная батарея",
-    info: "Самокат оснащен аккумулятором емкостью 12 800 мАч. Это позволяет преодолевать расстояния до 45 км без подзарядки.",
-    images: ["assets/3.png"],
-  },
-];
