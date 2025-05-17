@@ -1,6 +1,6 @@
 # Тестовое приложение (лендинг) для покупки самокатов
 
-## Used technology
+## Used technologies
 
 - React
 - MobX
