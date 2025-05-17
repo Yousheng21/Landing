@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 
 import { ReactComponent as Logo } from "../../assets/logo.svg";
@@ -8,17 +8,22 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { variants } from "./constants";
 
 interface IProps {
+  isVisible: boolean;
   handleClose: () => void;
 }
 
-export const Modal: FC<IProps> = ({ handleClose }) => (
-  <Backdrop onClick={handleClose} className="backdrop" initial={{ opacity: 0 }} animate={{ opacity: 0.97 }} exit={{ opacity: 0 }}>
-    <StModal onClick={(e) => e.stopPropagation()} variants={variants} initial="hidden" animate="visible" exit="exit">
-      <Logo fill="#FF4C0D" className="mb-5" />
-      <span className="font-black text-[18px]">Спасибо за заказ!</span>
-      <span className="font-black text-[14px]">В ближайшее время с вами свяжется менеджер</span>
-    </StModal>
-  </Backdrop>
+export const Modal: FC<IProps> = ({ handleClose, isVisible }) => (
+  <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+    {isVisible && (
+      <Backdrop onClick={handleClose} className="backdrop" initial={{ opacity: 0 }} animate={{ opacity: 0.97 }} exit={{ opacity: 0 }}>
+        <StModal onClick={(e) => e.stopPropagation()} variants={variants} initial="hidden" animate="visible" exit="exit">
+          <Logo fill="#FF4C0D" className="mb-5" />
+          <span className="font-black text-[18px]">Спасибо за заказ!</span>
+          <span className="font-black text-[14px]">В ближайшее время с вами свяжется менеджер</span>
+        </StModal>
+      </Backdrop>
+    )}
+  </AnimatePresence>
 );
 
 const Backdrop = styled(motion.div)`

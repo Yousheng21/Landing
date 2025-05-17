@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled, { useTheme } from "styled-components";
 
@@ -45,9 +45,7 @@ export const NavBar = () => {
         Купить
       </BtnBuy>
 
-      <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
-        {modalOpen && <Modal handleClose={close} />}
-      </AnimatePresence>
+      <Modal handleClose={close} isVisible={modalOpen} />
     </Container>
   );
 };
